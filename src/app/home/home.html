@@ -1,20 +1,48 @@
-<ul class="flex gap-4 p-4 justify-center">
-  @for(food of foods; track food) {
-    <!-- The 'group' class captures the hover event for everything inside -->
-    <a href="#" class="group block shrink-0">
-      
-      <!-- HOVER EFFECTS ON THE CIRCLE: Scales up, darkens border, and deepens shadow -->
-      <li class="h-24 w-24 overflow-hidden rounded-full border-2 border-orange-500 shadow-sm transition-all duration-300 
-                 group-hover:scale-105 group-hover:border-orange-600 group-hover:shadow-md 
-                 sm:h-32 sm:w-32">
+<ul class="flex gap-4 p-4 justify-center"> 
+  @for(food of foods; track food) { 
+    <a href="#" class="group block shrink-0"> 
+      <!-- Removed overflow-hidden and rounded-full from the main li container -->
+      <li class="w-24 transition-all duration-300 group-hover:scale-105 sm:w-32"> 
         
-        <!-- HOVER EFFECT ON THE IMAGE: Zooms in and tilts the food slightly -->
-        <img [src]="food" 
-             alt="Food item" 
-             class="h-full w-full object-cover transition-transform duration-300 
-                    group-hover:scale-110 group-hover:rotate-3">
-                    
-      </li>
-    </a>
-  }
+        <!-- Image Container: Keeps the circle cropping, border, and shadows -->
+        <div class="h-24 w-24 overflow-hidden rounded-full border-2 border-orange-500 shadow-sm transition-all duration-300 group-hover:border-orange-600 group-hover:shadow-md sm:h-32 sm:w-32">
+          <img [src]="food.imageURL" alt="Food item" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3"> 
+        </div>
+        
+        <!-- Details Wrapper: Placed normally below the image container -->
+        <div class="Content mt-2 flex flex-col items-center justify-center text-center border-1"> 
+          <div class="Name"> 
+            <p class="text-xs sm:text-sm font-semibold text-gray-800">{{food.name}}</p> 
+          </div>
+          <span class="Favorite text-white-500 text-sm sm:text-base mt-0.5">
+            ❤
+          </span>
+          <div class="product-item-footer">
+            <div class="origins">
+              <span>
+                @for(origin of food.origins; track origin){
+                  {{origin}}
+                }
+              </span>
+            </div>
+            <div class="Delivery-Time">
+              <span>
+                <svg xmlns="http://w3.org" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="12" cy="12" r="10" />
+  <polyline points="12 6 12 12 16 14" />
+</svg> {{food.deliveryTime}}
+
+              </span>
+            </div>
+            <div class="Price">
+              <span>
+                 ${{ food.price }}
+              </span>
+            </div>
+          </div> 
+        </div> 
+
+      </li> 
+    </a> 
+  } 
 </ul>
