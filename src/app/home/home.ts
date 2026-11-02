@@ -3,6 +3,7 @@ import { CurrencyPipe } from '@angular/common';
 import {Food} from '../services/food/food';
 
 @Component({
+  imports: [CurrencyPipe],
   selector: 'app-home',
   styleUrl: './home.css',
   templateUrl: './home.html',
