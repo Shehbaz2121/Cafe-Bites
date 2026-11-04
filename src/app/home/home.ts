@@ -1,9 +1,10 @@
 import { Component, inject, } from '@angular/core';
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe,AsyncPipe } from '@angular/common';
 import {Food} from '../services/food/food';
-
+import { ActivatedRoute } from '@angular/router';
+import { map } from 'rxjs/operators';
 @Component({
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe, AsyncPipe],
   selector: 'app-home',
   styleUrl: './home.css',
   templateUrl: './home.html',
@@ -11,9 +12,22 @@ import {Food} from '../services/food/food';
 export class Home {
   
    // 1. Modern functional dependency injection
-  private foodService = inject(Food); 
+  private foodService = inject(Food);
+  private route = inject(ActivatedRoute); 
 
-  // 2. Reactivity with Signals (Replaces standard arrays/variables)
-  // assuming getFoods() returns your items or a Signal
-  foods = this.foodService.getAll(); 
+
+ // Declarative stream that updates automatically whenever the route params change
+  foods$ = this.route.params.pipe(
+    map(params => {
+      const allFoods = this.foodService.getAll();
+      const searchTerm = params['searchTerm'];
+
+      if (searchTerm) {
+        return allFoods.filter(food =>
+          food.name.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+      }
+      return allFoods;
+    })
+  );
 }

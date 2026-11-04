@@ -3,7 +3,9 @@ import { Home } from './home/home';
 import { About } from './about/about';
 
 export const routes: Routes = [
+    {path: 'search/:searchTerm', component: Home },
     { path: '', component: Home },
     { path: 'home', component: Home },
-    { path: 'about', component: About }
+    { path: 'about', component: About },
+
 ];

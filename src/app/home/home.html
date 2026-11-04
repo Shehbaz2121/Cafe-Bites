@@ -1,50 +1,74 @@
 <ul class="flex flex-wrap gap-6 p-4 justify-center">
-  @for(food of foods; track food) {
+  @for(food of foods$ |async; track food) {
     <a href="#" class="group block shrink-0">
-      <li class="w-24 transition-all duration-300 transform group-hover:-translate-y-1 sm:w-32">
-        <!-- Image Container -->
-        <div class="h-24 w-24 mx-auto overflow-hidden rounded-full border-2 border-orange-500 shadow-sm transition-all duration-300 group-hover:border-orange-600 group-hover:shadow-lg sm:h-32 sm:w-32">
-          <img [src]="food.imageURL" alt="Food item" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+      <!-- Card Container with fixed width matching the screenshot proportions -->
+      <li class="w-[240px] bg-white rounded-xl overflow-hidden font-sans select-none">
+        
+        <!-- Image Container: Square/slightly rectangular with rounded corners -->
+        <div class="relative w-full aspect-[4/3] overflow-hidden rounded-2xl">
+          <img 
+            [src]="food.imageURL" 
+            alt="Food item" 
+            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          >
         </div>
 
-        <!-- Details Wrapper -->
-        <div class="mt-3 flex flex-col items-center text-center relative px-1">
+        <!-- Details Wrapper Section -->
+        <div class="p-3">
           <!-- Name & Favorite Heart Row -->
-          <div class="flex items-center justify-center gap-1 w-full">
-            <p class="text-xs sm:text-sm font-bold text-gray-800 line-clamp-1 group-hover:text-orange-600 transition-colors duration-200">
+          <div class="flex items-center justify-between gap-2">
+            <p class="text-sm font-medium text-pink-600/90 tracking-wide line-clamp-1">
               {{food.name}}
             </p>
-            <span class="text-xs text-red-500 hover:scale-125 transition-transform duration-200 cursor-pointer shrink-0">
-              ❤
-            </span>
+                @if(food.favorite == true) {
+                <span class="text-red-500 hover:text-red-600 transition-colors duration-200 cursor-pointer shrink-0">
+                ❤
+               </span>
+              } @else {
+               <span class="text-gray-400 hover:text-gray-500 transition-colors duration-200 cursor-pointer shrink-0">
+  <!-- Clean SVG outline heart instead of a filled text character -->
+  <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+  </svg></span>
+              }
+
           </div>
 
-          <!-- Product Item Footer -->
-          <div class="mt-1 flex flex-col items-center gap-0.5 w-full text-[10px] sm:text-xs text-gray-500 font-medium">
+          <!-- Rating Stars Mock (Hardcoded to match image structure) -->
+          <div class="flex items-center gap-0.5 mt-1 text-xs">
+            <span class="text-red-600">★</span>
+            <span class="text-red-600">★</span>
+            <span class="text-red-600">★</span>
+            <span class="text-gray-900">★</span>
+            <span class="text-gray-900">★</span>
+          </div>
+
+          <!-- Origins & Delivery Info Footer Row -->
+          <div class="flex items-center justify-between mt-2 text-[11px] text-gray-400 font-normal">
             <!-- Origins Tags -->
-            <div class="flex flex-wrap justify-center gap-1 max-w-full">
+            <div class="flex flex-wrap gap-1 max-w-[60%]">
               @for(origin of food.origins; track origin) {
-                <span class="bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded text-[9px] sm:text-[10px] uppercase tracking-wider font-semibold">
+                <span class="capitalize">
                   {{origin}}
                 </span>
               }
             </div>
 
             <!-- Delivery Time Info -->
-            <div class="flex items-center justify-center gap-1 mt-1 text-gray-400">
-              <svg xmlns="http://w3.org" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3 stroke-orange-500">
-                <circle cx="12" cy="12" r="10" />
-                <polyline points="12 6 12 12 16 14" />
+            <div class="flex items-center gap-1 shrink-0">
+              <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-3.5 h-3.5 stroke-gray-500">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
               </svg>
               <span>{{food.deliveryTime}}</span>
             </div>
+          </div>
 
-            <!-- Price Highlight -->
-            <div class="mt-1 text-sm sm:text-base font-extrabold text-orange-600">
-              {{ food.price | currency }}
-            </div>
+          <!-- Price Highlight -->
+          <div class="mt-3 text-sm font-semibold text-gray-600">
+            {{ food.price | currency }}
           </div>
         </div>
+
       </li>
     </a>
   }
