@@ -1,5 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+
 @Component({
   imports: [],
   selector: 'app-search',
@@ -16,13 +17,17 @@ export class Search {
     this.route = route;
     this.route.params.subscribe(params => {
       if (params['searchTerm']) {
-        this.searchTerm = params['searchTerm'];
+        // ✅ FIX 1: Use .set() to update a signal's value. Do not use '=' 
+        this.searchTerm.set(params['searchTerm']);
       }
     });
   }
-   search():void {
-    if(this.searchTerm)
-    this.router.navigateByUrl('/search/:' + this.searchTerm);
-    }
 
+  search(): void {
+    // ✅ FIX 2: Call the signal as a function () to read its current value
+    if (this.searchTerm()) {
+      // ✅ FIX 3: Remove the ':' from your URL path so it routes cleanly
+      this.router.navigateByUrl('/search/' + this.searchTerm());
+    }
+  }
 }
