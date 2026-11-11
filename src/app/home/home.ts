@@ -19,15 +19,20 @@ export class Home {
 
 
  // Declarative stream that updates automatically whenever the route params change
-  foods$ = this.route.params.pipe(
+  foods$ = this.route.params.pipe( 
     map(params => {
       const allFoods = this.foodService.getAll();
       const searchTerm = params['searchTerm'];
+      const tag = params['tag'];
 
       if (searchTerm) {
         return allFoods.filter(food =>
           food.name.toLowerCase().includes(searchTerm.toLowerCase())
         );
+      }
+
+      if (tag) {
+        return this.foodService.getAllFoodsByTag(tag);
       }
       return allFoods;
     })

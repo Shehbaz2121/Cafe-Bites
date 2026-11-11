@@ -1,9 +1,37 @@
 import { Service } from '@angular/core';
 import {FoodModel } from '../../shared/models/food';
+import { Tag } from '../../shared/models/tag';
 
 @Service()
 export class Food {
+
+
+  getAllTags(): Tag[] {
+  
+    return [
+    { name: 'All', count: 14 },
+    { name: 'FastFood', count: 4 },
+    { name: 'Pizza', count: 2 },
+    { name: 'Lunch', count: 3 },
+    { name: 'SlowFood', count: 2 },
+    { name: 'Hamburger', count: 1 },
+    { name: 'Fry', count: 1 },
+    { name: 'Soup', count: 1 },
+  ];
+}
     
+    getAllFoodsByTag(tag:string):FoodModel[]{
+      //statement? Job1 : Job2
+
+      //statement
+      return tag == "All"?
+
+        //    Job 1             Job 2
+       //      |                 |  
+       //      v                 v
+      this.getAll() : this.getAll().filter(food=> food.tags?.includes(tag));
+    }
+
 
     getAll():FoodModel[]{
          return [
