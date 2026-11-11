@@ -5,6 +5,7 @@ import { Pagenotfound } from './pagenotfound/pagenotfound';
 
 export const routes: Routes = [
     {path: 'search/:searchTerm', component: Home },
+    {path: 'tag/:tag', component: Home },
     { path: '', component: Home },
     { path: 'home', component: Home },
     { path: 'about', component: About },
