@@ -5,6 +5,10 @@ import { Tag } from '../../shared/models/tag';
 @Service()
 export class Food {
 
+    getAllFoodsBySearchTerm(searchTerm:string) :FoodModel[]{
+      return  this.getAll().filter(food =>
+      food.name.toLowerCase().includes(searchTerm.toLowerCase()));
+    }
 
   getAllTags(): Tag[] {
   
