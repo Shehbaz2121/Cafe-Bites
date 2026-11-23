@@ -1,0 +1,97 @@
+<div class="container mx-auto min-h-screen bg-[#FAF6F0] py-12 px-4 sm:px-6 lg:px-8 flex items-center justify-center">
+  
+  <!-- Café Menu Card Wrapper -->
+  <div class="max-w-5xl w-full bg-white rounded-3xl shadow-xl shadow-stone-300/60 border border-stone-200/80 overflow-hidden grid grid-cols-1 md:grid-cols-2">
+    
+    <!-- Food Image -->
+    <div class="relative bg-stone-100 h-80 md:h-auto overflow-hidden group">
+      <img 
+        [src]="food.imageURL" 
+        [alt]="food.name"
+        class="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+      >
+      <div class="absolute inset-0 bg-gradient-to-t from-stone-900/20 via-transparent to-transparent pointer-events-none"></div>
+    </div>
+
+    <!-- Details Section -->
+    <div class="details p-8 md:p-10 flex flex-col justify-between space-y-6">
+      <div>
+        
+        <!-- Header: Name & Favorite -->
+        <div class="header flex items-start justify-between gap-4">
+          <span class="name text-3xl font-serif font-bold text-stone-900 tracking-tight leading-snug">
+            {{food.name}}
+          </span>
+
+          <!-- Uses native Angular class binding + preserves your 'not' class logic -->
+          <span 
+            class="favorite text-2xl transition-transform active:scale-90 cursor-pointer select-none text-rose-500"
+            [class.not]="!food.favorite"
+            [class.!text-stone-300]="!food.favorite"
+          >
+            ❤
+          </span>
+        </div>
+
+        <!-- Rating & Details Wrapper (Preserves your exact nested structure) -->
+        <div class="rating mt-2">
+          <div class="flex items-center gap-0.5 mt-1 text-base">
+            <span class="text-amber-600">★</span>
+            <span class="text-amber-600">★</span>
+            <span class="text-amber-600">★</span>
+            <span class="text-stone-300">★</span>
+            <span class="text-stone-300">★</span>
+          </div>
+
+          <!-- Origins -->
+          <div class="origins flex flex-wrap gap-2 mt-4">
+            @for(origin of food.origins; track origin) {
+              <span class="px-3 py-1 text-xs font-semibold uppercase tracking-wider bg-amber-100/80 text-amber-900 rounded-full border border-amber-200/60">
+                {{origin}}
+              </span>
+            }
+          </div>
+
+          <!-- Tags Component -->
+          <div class="tags mt-4">
+            <app-tags [foodPageTags]="food.tags"></app-tags>
+          </div>
+
+          <!-- Bottom Divider & Order Section -->
+          <div class="mt-6 pt-6 border-t border-stone-200/80 space-y-5">
+            
+            <!-- Delivery Time -->
+            <div class="Delivery-time flex items-center gap-2.5 text-sm text-stone-600 bg-stone-100/80 px-4 py-2.5 rounded-xl w-fit">
+              <span>🕒</span>
+              <span>
+                Time to Deliver about <strong class="text-stone-900 font-semibold">{{food.deliveryTime}}</strong> Minutes
+              </span>
+            </div>
+
+            <!-- Price & Add to Cart Button -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-1">
+              <div class="price">
+                <span class="text-sm text-stone-500 block">
+                  Price: 
+                  <strong class="block text-3xl font-bold text-amber-900 mt-0.5">
+                    {{food.price | currency}}
+                  </strong>
+                </span>
+              </div>
+
+              <button 
+                type="button"
+                class="w-full sm:w-auto px-8 py-3.5 bg-amber-900 hover:bg-amber-950 active:scale-[0.98] text-amber-50 font-semibold rounded-full shadow-md shadow-amber-900/20 transition-all duration-200 cursor-pointer flex items-center justify-center gap-2"
+              >
+                Add to Cart
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

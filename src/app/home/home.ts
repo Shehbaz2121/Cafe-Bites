@@ -1,14 +1,14 @@
 import { Component, inject, } from '@angular/core';
 import { CurrencyPipe,AsyncPipe } from '@angular/common';
 import {Food} from '../services/food/food';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 // import { map } from 'rxjs/operators';
 import { About } from '../about/about';
 import { Search } from '../search/search';
 import { Tags } from '../tags/tags';
 import { FoodModel } from '../shared/models/food';
 @Component({
-  imports: [CurrencyPipe, AsyncPipe, About, Search, Tags],
+  imports: [CurrencyPipe, AsyncPipe, About, Search, Tags, RouterLink],
   selector: 'app-home',
   styleUrl: './home.css',
   templateUrl: './home.html',

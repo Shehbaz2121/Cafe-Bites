@@ -2,7 +2,7 @@
 <app-tags></app-tags>
 <ul class="flex flex-wrap gap-6 p-4 justify-center">
   @for(food of foods; track food) {
-    <a href="#" class="group block shrink-0">
+    <a routerLink="/food/{{food.id}}" class="group block shrink-0">
       <!-- Card Container with cozy cafe olive-stone backing -->
       <li class="w-[240px] bg-stone-100/80 border border-stone-200/60 rounded-xl overflow-hidden font-sans select-none shadow-sm transition-all duration-300 group-hover:shadow-md group-hover:border-stone-300">
         
@@ -47,7 +47,7 @@
 
           <!-- Origins & Delivery Info Footer Row -->
           <div class="flex items-center justify-between mt-2 text-[11px] text-stone-500 font-normal">
-            <!-- Origins Tags -->
+            <!-- Origins Tags-->
             <div class="flex flex-wrap gap-1 max-w-[60%] text-stone-600 font-medium">
               @for(origin of food.origins; track origin) {
                 <span class="capitalize">

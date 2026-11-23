@@ -1,5 +1,6 @@
-@if (tags && tags.length > 0) {
+
   <div class="flex flex-wrap items-center justify-center gap-2.5 my-4">
+    @if (tags && tags.length > 0) {
     @for (tag of tags; track tag.name) {
       <a
         [routerLink]="['/tags', tag.name]"
@@ -12,5 +13,22 @@
         </span>
       </a>
     }
+  }</div>
+
+
+  <div class="flex flex-wrap items-center justify-center gap-2.5 my-4">
+    @if (foodPageTags && foodPageTags.length > 0) {
+    @for (tagName of foodPageTags; track tagName) {
+      <a
+        [routerLink]="['/tags', tagName]"
+        routerLinkActive="!bg-orange-500 !text-white !border-orange-500"
+        class="group inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-sm font-medium bg-orange-50 text-orange-900 border border-orange-200 hover:bg-orange-100 hover:text-orange-950 hover:border-orange-300 transition-colors duration-200"
+      >
+        <span>{{ tagName }}</span>
+        <!-- <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-orange-200/70 text-orange-800 group-hover:bg-orange-200">
+          {{ tag.count }}
+        </span> -->
+      </a>
+    }
+  }
   </div>
-}

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Tag } from '../shared/models/tag';
 import {RouterLink} from '@angular/router';
 import { Food } from '../services/food/food';
@@ -9,12 +9,16 @@ import { Food } from '../services/food/food';
   templateUrl: './tags.html',
 })
 export class Tags {
-  tags: Tag[] = [];
 
+  @Input()  
+  foodPageTags?:string[];
+  tags?: Tag[];
   constructor(private Foodservice: Food) {}
 
   ngOnInit() {
+    if(!this.foodPageTags){
     this.tags = this.Foodservice.getAllTags();
+    }
   }
 
 }
