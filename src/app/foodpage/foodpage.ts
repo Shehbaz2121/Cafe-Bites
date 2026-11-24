@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { FoodModel } from '../shared/models/food';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {Food} from '../services/food/food';
 import { Tags } from '../tags/tags';
 import { CurrencyPipe } from '@angular/common';
+import { CartService } from '../services/cart/cart';
 @Component({
   imports: [Tags, CurrencyPipe],
   selector: 'app-foodpage',
@@ -13,7 +14,10 @@ import { CurrencyPipe } from '@angular/common';
 export class Foodpage {
 
   food!: FoodModel;
-   constructor(private activatedRoute: ActivatedRoute , private Food : Food){
+   constructor(private activatedRoute: ActivatedRoute , private Food : Food,
+    private cartService: CartService,
+    private router: Router
+   ){
       activatedRoute.params.subscribe((params)=> {
         if(params['id']){
           this.food = Food.getFoodbyid(params['id']);
@@ -23,5 +27,8 @@ export class Foodpage {
 
    }
 
-
+    addToCart(){
+      this.cartService.addToCart(this.food);
+      this.router.navigateByUrl('/cart-page');
+    }
   }
