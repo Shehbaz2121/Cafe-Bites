@@ -1,59 +1,102 @@
-# CafeBites
+# ☕ Cafe Bites
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.2.
+A cozy café food-ordering front end built with **Angular** and **Tailwind CSS**. Browse the menu, search for dishes, filter by tags, open a dish's detail page, and manage a shopping cart.
 
-## Development server
+<!-- 🔗 **Live demo:** _add your link here after deploying_ -->
 
-To start a local development server, run:
+<!-- Add screenshots here, e.g.
+![Home page](docs/home.png)
+![Cart page](docs/cart.png)
+-->
 
-```bash
-ng serve
+## ✨ Features
+
+- **Menu browsing** – card grid with image, rating, origins, delivery time and price
+- **Search** – find dishes by name (`/search/:searchTerm`)
+- **Tag filters** – FastFood, Pizza, Lunch, SlowFood and more, each with a count (`/tags/:tag`)
+- **Food detail page** – large image, origins, tags, delivery estimate and *Add to Cart* (`/food/:id`)
+- **Shopping cart** – change quantity, remove items, live total price (`/cart-page`)
+- **Friendly empty states** – reusable "not found" component for empty search results, empty cart and missing products
+- **404 route** – wildcard route for unknown URLs
+- **Responsive layout** styled with a warm café palette (Tailwind utility classes)
+
+## 🛠 Tech Stack
+
+| Area | Tools |
+| --- | --- |
+| Framework | Angular 22 (standalone components, new `@if` / `@for` control flow, signals) |
+| Language | TypeScript |
+| Styling | Tailwind CSS 4 (via PostCSS) |
+| Routing | Angular Router |
+| Testing | Vitest (spec files generated for each component) |
+
+## 📁 Project Structure
+
+```
+src/app/
+├── header/          # Top navigation bar + cart button
+├── home/            # Menu grid (also handles search and tag results)
+├── search/          # Search bar
+├── tags/            # Tag filter chips
+├── foodpage/        # Single dish details + Add to Cart
+├── cart-page/       # Cart list and order summary
+├── not-found/       # Reusable empty-state component
+├── pagenotfound/    # 404 page
+├── about/           # About page (placeholder)
+├── services/
+│   ├── food/        # Menu data + search/filter helpers
+│   └── cart/        # Cart logic (add, remove, change quantity)
+└── shared/models/   # Food, Tag, Cart, CartItem classes
+public/assets/images/food/   # Dish images
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## 🚀 Getting Started
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+**Prerequisites:** [Node.js](https://nodejs.org/) (LTS) and npm.
 
 ```bash
-ng generate component component-name
+# 1. Clone the repo
+git clone https://github.com/Shehbaz2121/Cafe-Bites.git
+cd Cafe-Bites
+
+# 2. Install dependencies
+npm install
+
+# 3. Start the dev server
+npm start
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Open `http://localhost:4200/` — the app reloads when you change a file.
+
+### Other commands
 
 ```bash
-ng generate --help
+npm run build   # production build -> dist/Cafe-Bites/browser
+npm test        # run unit tests with Vitest
 ```
 
-## Building
+## 🌐 Deployment
 
-To build the project run:
+Cafe Bites is a static single-page app (no backend), so it can be hosted for free on Netlify, Vercel, Firebase Hosting or GitHub Pages.
 
-```bash
-ng build
-```
+- **Build command:** `npm run build`
+- **Publish directory:** `dist/Cafe-Bites/browser`
+- **SPA routing:** configure a fallback to `index.html` so that direct links like `/food/2` don't 404 (on Netlify, add a `public/_redirects` file containing `/*  /index.html  200`)
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## 🧭 Roadmap
 
-## Running unit tests
+- [ ] Persist the cart (localStorage) so it survives a page refresh
+- [ ] Mobile navigation menu
+- [ ] Real star ratings from each dish's `stars` value
+- [ ] Favorite toggle that works on click
+- [ ] Write the About page
+- [ ] Checkout flow and backend/API for menu data
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+## 📄 License
 
-```bash
-ng test
-```
+This project is for learning and portfolio purposes.
 
-## Running end-to-end tests
+## 👤 Author
 
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+**Shehbaz Ali** – student & web developer, Karachi, Pakistan
+GitHub: [@Shehbaz2121](https://github.com/Shehbaz2121)
