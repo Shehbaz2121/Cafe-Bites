@@ -7,8 +7,9 @@ import { About } from '../about/about';
 import { Search } from '../search/search';
 import { Tags } from '../tags/tags';
 import { FoodModel } from '../shared/models/food';
+import { NotFound } from '../not-found/not-found';
 @Component({
-  imports: [CurrencyPipe, AsyncPipe, About, Search, Tags, RouterLink],
+  imports: [CurrencyPipe, AsyncPipe, About, Search, Tags, RouterLink, NotFound],
   selector: 'app-home',
   styleUrl: './home.css',
   templateUrl: './home.html',

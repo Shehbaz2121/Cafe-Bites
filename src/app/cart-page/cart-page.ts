@@ -5,8 +5,9 @@ import { CartItem } from '../shared/models/cartitem';
 import { RouterLink } from '@angular/router';
 import { CurrencyPipe } from '@angular/common';
 import { Food } from '../services/food/food';
+import { NotFound } from '../not-found/not-found';
 @Component({
-  imports: [RouterLink,CurrencyPipe],
+  imports: [RouterLink, CurrencyPipe, NotFound],
   selector: 'app-cart-page',
   styleUrl: './cart-page.css',
   templateUrl: './cart-page.html',

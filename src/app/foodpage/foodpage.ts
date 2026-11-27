@@ -5,8 +5,9 @@ import {Food} from '../services/food/food';
 import { Tags } from '../tags/tags';
 import { CurrencyPipe } from '@angular/common';
 import { CartService } from '../services/cart/cart';
+import { NotFound } from '../not-found/not-found';
 @Component({
-  imports: [Tags, CurrencyPipe],
+  imports: [Tags, CurrencyPipe, NotFound],
   selector: 'app-foodpage',
   styleUrl: './foodpage.css',
   templateUrl: './foodpage.html',

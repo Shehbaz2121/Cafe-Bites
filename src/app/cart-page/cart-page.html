@@ -1,3 +1,8 @@
+<app-not-found [visible]="!cart || cart.items.length <= 0"
+notFoundMessage="Your cart is empty."
+resetLinkText="Go to Homepage"
+></app-not-found>
+@if(cart && cart.items.length >0){
 <div class="min-h-screen bg-[#FAF6F0] py-12 px-4 sm:px-6 lg:px-8">
   <div class="max-w-5xl mx-auto">
 
@@ -104,3 +109,4 @@
     </div>
   </div>
 </div>
+}

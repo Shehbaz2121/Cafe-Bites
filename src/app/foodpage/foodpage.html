@@ -1,3 +1,6 @@
+<app-not-found [visible]="!food" notFoundMessage="Product Not Found"
+resetLinkText="Back to Homepage"></app-not-found>
+@if(food) {
 <div class="container mx-auto min-h-screen bg-[#FAF6F0] py-12 px-4 sm:px-6 lg:px-8 flex items-center justify-center">
   
   <!-- Café Menu Card Wrapper -->
@@ -95,3 +98,4 @@
 
   </div>
 </div>
+}
